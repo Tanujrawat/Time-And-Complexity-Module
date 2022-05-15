@@ -1,0 +1,74 @@
+// in first loop n-1 there, bcz in last 1 element will be remainaing and it will get sorted on its own.
+// in second loop n-i-1 is there bcz we don't have any remaining element for comparing the last element
+// -i in second loop bcz each time we are sorting i elements at their correct position, 
+// first time 0 elements is sorted, 2nd time 1 elem is sorted, 3rd time 2 elements are sorted and so on, 
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void bubbleSort(int[] arr) {
+    for(int i=0;i<arr.length-1;i++){
+        for(int j=0;j<arr.length-i-1;j++){
+            if(isSmaller(arr, j+1,j)){
+                swap(arr, j+1,j);
+            }
+        }
+    }
+    
+  }
+
+  // used for swapping ith and jth elements of array
+  public static void swap(int[] arr, int i, int j) {
+    System.out.println("Swapping " + arr[i] + " and " + arr[j]);
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  // return true if ith element is smaller than jth element
+  public static boolean isSmaller(int[] arr, int i, int j) {
+    System.out.println("Comparing " + arr[i] + " and " + arr[j]);
+    if (arr[i] < arr[j]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public static void print(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.println(arr[i]);
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = scn.nextInt();
+    }
+    bubbleSort(arr);
+    print(arr);
+  }
+}
+
+TIME COMPLEXITY: 
+For first loop - it runs for n-1 times in worst cast so its big O of n ~ O(n)
+for second loop - it runs for n-1 times in worst cast so its big O of n ~ O(n)
+total- O(n^2) - [ as 1 loop is inside the other there we are multiplying O(n)*O(n) hence O(n^2)]
+
+best cast ( O(n) ) - if array is already sorted and u are using a flag variable - bcz when flag remains false it means there is no swap done inside
+the loop hence our array is already sorted
+
+boolean flag = false;
+for(int i=0;i<arr.length-1;i++){
+        for(int j=0;j<arr.length-i-1;j++){
+            if(isSmaller(arr, j+1,j)){
+                flag = true;
+                swap(arr, j+1,j);
+            }
+        }
+}
