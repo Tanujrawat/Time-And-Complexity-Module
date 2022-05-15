@@ -12,7 +12,7 @@ public class Main {
     int j = 0;
     int k = 0;
     
-    while(i<a.length && j<b.length){
+    while(i<a.length && j < b.length){
         if(a[i] <= b[j]){
             ans[k] = a[i];
             i++;
@@ -23,6 +23,19 @@ public class Main {
             k++;
         }
     }
+    
+    while(i < a.length){
+        ans[k] = a[i];
+        k++;
+        i++;
+    }
+    while(j < b.length){
+        ans[k] = b[j];
+        k++;
+        j++;
+    }
+    
+    return ans; 
   }
 
   public static void print(int[] arr){
